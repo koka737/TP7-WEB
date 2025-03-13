@@ -1,0 +1,20 @@
+{% include "header.html" %}
+  <form action="/create" method="post">
+    <div>
+      <div>
+        <h1> Créer une nouvelle recette </h1>
+        <p>Titre : <input type="text" name="title"></p>
+        <p>Description : <br> <textarea name="description"></textarea></p>
+        <p>Durée : <input type="text" name="duration"></p>
+        <p>Image : <input type="text" name="img"></p>
+
+        <h2> Ingrédients (liste à tirets)</h2>
+        <p><textarea name="ingredients"></textarea></p>
+        <h2> Étapes (liste à tirets)</h2>
+        <p><textarea name="stages"></textarea></p>
+
+        <input type="submit" value="Créer">
+      </div>
+    </div>
+  </form>
+{% include "footer.html" %}

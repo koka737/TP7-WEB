@@ -1,0 +1,37 @@
+{% include "header.html" %}
+  <div>
+    <div>
+    <h1>{{ recipe['title'] }}</h1>
+    <p>
+    <a href="/update/{{ recipe['id'] }}">Modifier</a>
+    <a href="/delete/{{ recipe['id'] }}">Supprimer</a>
+    </p>
+
+    <p>{{ recipe['description'] }}</p>
+    <p>Durée : {{ recipe['duration'] }}</p>
+    </div>
+    <div>
+    <img src="{{ recipe['img'] }}">
+    </div>
+  </div>
+  <div>
+    <div>
+    Ingrédients :
+    <ul>
+      {% for ingredient in recipe['ingredients'] %}
+        <li>{{ ingredient['name'] }}</li>
+      {% endfor %}
+    </ul>
+    </div>
+  </div>
+  <div>
+    <div>
+    Étapes :
+    <ol>
+      {% for stage in recipe['stages'] %}
+        <li>{{ stage['description'] }}</li>
+      {% endfor %}
+    </ol>
+    </div>
+  </div>
+{% include "footer.html" %}

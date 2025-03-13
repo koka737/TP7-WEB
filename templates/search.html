@@ -1,0 +1,28 @@
+{% include "header.html" %}
+  <div>
+    <div>
+      <h1>{{ found['num_found'] }} recettes trouvées (page {{ found['page'] }}/{{ found['num_pages'] }})</h1>
+    </div>
+  </div>
+
+  <div>
+      {% for result in found['results'] %}
+      <div>
+        <a href="/read/{{ result['entry'] }}">
+          <div>
+            <img src="{{ result['img'] }}">
+            <div>
+                <p>{{ result['title'] }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+  </div>
+
+  <div>
+    <div>
+      <a href="/search?query={{ found['query'] }}&page={{ found['next_page'] }}">Page suivante</a>
+    </div>
+  </div>
+{% include "footer.html" %}
