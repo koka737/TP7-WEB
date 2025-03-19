@@ -39,15 +39,18 @@ def login_form():
 
 @app.post("/login")
 def verify_login():
-    username = request.form["username"]
-    password = request.form["password"]
+    username = request.form['username']
+    password = request.form['password']
     error = None
-    if not (username in user_data):
+    if username not in user_data:
         error = "Nom d'utilisateur incorrect"
+        return Response(error)
+      
     else:
         password_hash = user_data[username]["password_hash"]
         if not (check_password_hash(password_hash, password)):
             error = "Mot de passe incorrect"
+            return Response(error)
     if error is None:
         session.clear()
         session["username"] = username
@@ -85,15 +88,25 @@ def new_user_form():
 
 @app.post("/new_user")
 def add_new_user():
-    username = request.form["username"]
-    password = request.form["password"]
-    password_hash = generate_password_hash(password)
+    username = request.form.get("username")
+    password = request.form.get("password")
+    error = None
+    if not(username):
+        error = "Veuillez entrer un nom d'utilisateur"
+    elif not(password):
+        error = "Veuillez entrer un mot de passe"
+    elif username in user_data:
+        error = "Ce nom d'utilisateur existe déjà"
+    if error is None:
+        password_hash = generate_password_hash(password)
+        user_data[username] = {'views': 0, 'password_hash': password_hash}
+        
+        session.clear()
+        session["username"]= username
+        return redirect(url_for('home'))
+    else:
+        return render_template("new_user.html", error=error) 
 
-    user_id = model.new_user(name, password)
-
-    session.clear()
-    session["username"] = name
-    return redirect(url_for("home"))
 
 
 # Retourne les résultats de la recherche à partir de la requête "query"

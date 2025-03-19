@@ -23,8 +23,7 @@ def login(name, password):
         else:
             return -1 
     
-def new_user(name, password):
-    password_hash = generate_password_hash(password)
+def new_user(name, password_hash):
     with sqlite3.connect(DBFILENAME) as conn:
         cur = conn.cursor()
         cur.execute("INSERT INTO user (name, password_hash) VALUES (?, ?)", (name, password_hash))

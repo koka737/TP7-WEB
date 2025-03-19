@@ -1,7 +1,8 @@
 {% include "header.html" %}
-  <div>
-    <div>
-    <h1>{{ recipe['title'] }}</h1>
+  <div class="container my-5">
+    <div class="row mb-4 row-cols-1 row-cols-md-2">
+      <div class="col">
+    <h1 class="fs-1 fw-bold">{{ recipe['title'] }}</h1>
     <p>
       {%if 'username' in session%}
     <a href="/update/{{ recipe['id'] }}">Modifier</a>
@@ -12,12 +13,13 @@
     <p>{{ recipe['description'] }}</p>
     <p>Durée : {{ recipe['duration'] }}</p>
     </div>
-    <div>
-    <img src="{{ recipe['img'] }}">
+    <div class="col">
+    <img src="{{ recipe['img'] }}" class="img-fluid">
     </div>
   </div>
-  <div>
-    <div>
+
+  <div class="row mb-4">
+    <div class="col-12">
     Ingrédients :
     <ul>
       {% for ingredient in recipe['ingredients'] %}
@@ -26,8 +28,9 @@
     </ul>
     </div>
   </div>
-  <div>
-    <div>
+
+  <div class="row">
+    <div class="col-12">
     Étapes :
     <ol>
       {% for stage in recipe['stages'] %}
@@ -36,4 +39,5 @@
     </ol>
     </div>
   </div>
+</div>
 {% include "footer.html" %}

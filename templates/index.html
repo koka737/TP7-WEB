@@ -22,17 +22,13 @@
         <input type="submit" value="se déconnecter">
       </form>
     {% else %}
-       <form method="POST" action="/login">
-        <input type="text" name="username" placeholder="Nom d'utilisateur">
-        <input type="password" name="password" placeholder="Mot de passe">
-        <input type="submit" value="Se connecter">
+       <form method="get_digit" action="/login">
+        <button type="submit">Se connecter</button>
       </form>
       
 
       <form method="POST" action="/new_user">
-        <input type="text" name="username" placeholder="Nom d'utilisateur">
-        <input type="password" name="password" placeholder="Mot de passe">
-        <input type="submit" value="Nouvel utilisateur">
+        <button type="submit">Nouvel utilisateur</button>
       </form>
     {% endif %}
     
