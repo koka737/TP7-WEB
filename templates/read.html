@@ -3,8 +3,10 @@
     <div>
     <h1>{{ recipe['title'] }}</h1>
     <p>
+      {%if 'username' in session%}
     <a href="/update/{{ recipe['id'] }}">Modifier</a>
     <a href="/delete/{{ recipe['id'] }}">Supprimer</a>
+      {%endif%}
     </p>
 
     <p>{{ recipe['description'] }}</p>

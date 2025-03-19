@@ -1,9 +1,44 @@
 {% include "header.html" %}
-  <div>
-    <div>
+  <div class="container text-center text-bg-secondary p-3">
+    <div class="row mb-4">
+      <div class="col-12">
       <h1>Cuisiner c'est bon pour la santé</h1>
+      <h5>Utilisez le formulaire de recherche por trouver une recette parmis les 1087 recettes indexées.</h5>
+      </div>
+    </div>
 
-      <img src="https://pageperso.lis-lab.fr/benoit.favre/tp-web/images/kitchen.jpg">
+    <div class="row mb-4">
+      <div class="col-12">
+      <img src="https://pageperso.lis-lab.fr/benoit.favre/tp-web/images/kitchen.jpg" class="img-fluid mx-auto d-block">
     </div>
   </div>
+
+  <div class="row mb-4">
+    <div class="col-12">
+      {% if logged_in %}
+      <p>Hello {{username}} !</p>
+      <p>Views {{views}}</p>
+      <form method="POST" action="/logout">
+        <input type="submit" value="se déconnecter">
+      </form>
+    {% else %}
+       <form method="POST" action="/login">
+        <input type="text" name="username" placeholder="Nom d'utilisateur">
+        <input type="password" name="password" placeholder="Mot de passe">
+        <input type="submit" value="Se connecter">
+      </form>
+      
+
+      <form method="POST" action="/new_user">
+        <input type="text" name="username" placeholder="Nom d'utilisateur">
+        <input type="password" name="password" placeholder="Mot de passe">
+        <input type="submit" value="Nouvel utilisateur">
+      </form>
+    {% endif %}
+    
+  </body>
+    </div>
+  </div>
+</div>
+
 {% include "footer.html" %}
